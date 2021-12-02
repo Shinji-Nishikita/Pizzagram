@@ -1,6 +1,8 @@
+// .envファイルを読み込む
+require("dotenv").config();
 //expressを読み込む
 const express = require("express");
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 //expressサーバーを作成する
 const app = express();
@@ -10,7 +12,7 @@ app.use(express.json());
 
 //リクエストを受信できるかテスト
 app.get("/test", (req, res) => {
-    res.send("Yeah!");
+    res.send("getできてますね！");
 })
 
 //listenメソッドを実行して指定したポート番号でリクエストを待ち受ける
