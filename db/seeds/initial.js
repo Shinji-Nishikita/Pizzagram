@@ -9,17 +9,17 @@ exports.seed = function(knex) {
         {
           user: "shinji_n",
           photo_url:
-            "https://ibb.co/qCvRBmB",
+            "https://i.ibb.co/dtRQBkB/italy.jpg",
         },
         {
           user: "shinji_n",
           photo_url:
-            "https://ibb.co/Gngg5p2",
+            "https://i.ibb.co/2WXXkht/fuji.jpg",
         },
         {
           user: "shinji_n",
           photo_url:
-            "https://ibb.co/BfXhBjB",
+            "https://i.ibb.co/yNwzq5q/yokohama.jpg",
         },
       ]);
     })
