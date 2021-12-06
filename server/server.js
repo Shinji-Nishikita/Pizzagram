@@ -1,6 +1,9 @@
 // .envファイルを読み込む
 require("dotenv").config();
 
+// pathモジュール(ネイティブユーティリティモジュール)をインポート=>ファイルパスを操作するためのもの。
+const path = require('path');
+
 //expressを読み込む
 const express = require("express");
 
@@ -14,6 +17,9 @@ const knex = require("knex")(config[process.env.DB_ENV]);
 
 //クライアント側から送信されたリクエストをreq.bodyで取得するためにJSONをパースするミドルウェアを使用する。
 app.use(express.json());
+
+// 静的ファイルの提供
+app.use(express.static(path.resolve(__dirname, "..", "build")));
 
 //データベースの"posts"テーブルから情報を取得する
 //非同期通信(async-await)
