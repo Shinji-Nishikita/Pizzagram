@@ -1,3 +1,8 @@
+.container {
+  font-family: "Gill Sans";
+  color: black;
+}
+
 .postHead {
   height: 50px;
   background-color: white;
@@ -14,10 +19,60 @@
 
 .text-for-avatar {
   font-family: "Gill Sans";
+  font-weight: 600;
   color: black;
-  margin-top: 14px;
+  margin-top: 16px;
 }
 
 .photo {
   width: 100%;
+}
+
+.comments {
+  display: flex;
+  justify-content: flex-start;
+  font-weight: 300;
+  margin-top: 10px;
+}
+
+.commentUser {
+  font-weight: 600;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.commentText {
+  font-weight: 400;
+}
+
+.addComment {
+  width: auto;
+  height: 40px;
+  border: gray 1px solid;
+  border-radius: 20px;
+  margin: 15px 10px 10px 10px;
+  display: flex;
+  align-items: center;
+}
+
+.inputText {
+  background-color: transparent;
+  border: none;
+  height: 30px;
+  width: 80%;
+  margin-left: 15px;
+  font-weight: 100;
+  font-family: "Gill Sans";
+  color: black;
+}
+
+.button {
+  font-family: "Gill Sans";
+  color: #9fcfeb;
+  width: 25%;
+  height: 35px;
+  font-size: larger;
+  border: none;
+  background-color: transparent;
+  border-left: gray solid 1px;
 }
