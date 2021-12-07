@@ -28,6 +28,10 @@ app.get("/posts", async (req, res) => {
     res.send(data)
 });
 
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "..", "build", "index.html"));
+});
+
 //listenメソッドを実行して指定したポート番号でリクエストを待ち受ける
 app.listen(port, () => {
     console.log(`express listening on port ${port}`)
