@@ -1,5 +1,6 @@
 import './App.css';
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import { useState, useEffect } from "react";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <img src="https://i.ibb.co/dtRQBkB/italy.jpg" alt=""></img>
       <img src="https://i.ibb.co/2WXXkht/fuji.jpg" alt=""></img>
       <img src="https://i.ibb.co/yNwzq5q/yokohama.jpg" alt=""></img>
+      <Footer />
     </div>
   );
 }

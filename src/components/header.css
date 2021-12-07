@@ -1,23 +1,25 @@
-@import url(//db.onlinewebfonts.com/c/27b6e6c343cda86bfb4f799ccd083d9c?family=NicolasCocTEEReg);
-/* @import url(//db.onlinewebfonts.com/c/6d32b8e06f40fb7698cfb714b9e7975d?family=BillabongW00-Regular); */
+@font-face {
+  font-family: "Billabong";
+  src: url(./Billabong.ttf);
+}
 
 .header {
   background-color: white;
   position: fixed;
   top: 0;
   width: 100%;
-  height: 60px;
+  height: 55px;
 }
 
 .logo {
-  font-family: NicolasCocTEEReg;
+  font-family: Billabong;
   font-size: 30px;
   font-weight: 600;
   margin: 11px;
   position: fixed;
   left: 10px;
   color: black;
-  border-color: white;
+  background-color: white;
   text-shadow: 0px 0px 0.1px rgba(100, 100, 100, 0.1);
   letter-spacing: 1px;
   background-clip: text;
