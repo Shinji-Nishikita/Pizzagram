@@ -24,8 +24,16 @@ app.use(express.static(path.resolve(__dirname, "..", "build")));
 //データベースの"posts"テーブルから情報を取得する
 //非同期通信(async-await)
 app.get("/posts", async (req, res) => {
-    const data = await knex.select().from("posts");
-    res.send(data)
+  const data = await knex.select().from("posts");
+  res.send(data)
+});
+
+//データベースの"comments"テーブルから情報を取得する
+//非同期通信(async-await)
+app.get("/comments/:id", async (req, res) => {
+  const userId = req.params.id;
+  const data = await knex.select().from("comments").where("post_id", userId);
+  res.send(data)
 });
 
 app.get("*", (req, res) => {
