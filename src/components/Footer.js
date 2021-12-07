@@ -7,7 +7,7 @@ export default function Footer() {
     <div className="footer">
       <div className="footerBack"></div>
       <div className="cameraIcon">
-        <img src={camera} alt="cam" />
+        <img className="cameraImg" src={camera} alt="cam" />
       </div>
     </div>
   )
