@@ -1,4 +1,5 @@
 import './App.css';
+import Header from "./components/Header";
 import { useState, useEffect } from "react";
 
 function App() {
@@ -15,9 +16,12 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       <header></header>
       <div>Photo</div>
       <img src="https://i.ibb.co/dtRQBkB/italy.jpg" alt=""></img>
+      <img src="https://i.ibb.co/2WXXkht/fuji.jpg" alt=""></img>
+      <img src="https://i.ibb.co/yNwzq5q/yokohama.jpg" alt=""></img>
     </div>
   );
 }
