@@ -39,7 +39,7 @@ app.post("/posts", async (req, res) => {
 //データベースの"comments"テーブルから情報を取得する
 //非同期通信(async-await)
 app.get("/comments/:id", async (req, res) => {
-  const userId = req.params.id;
+  const userId = Number(req.params.id);
   const data = await knex.select().from("comments").where("post_id", userId);
   res.send(data)
 });
