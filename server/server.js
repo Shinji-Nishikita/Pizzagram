@@ -9,7 +9,7 @@ const express = require("express");
 
 //expressサーバーを作成する
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 //knexfileを読み込む
 const config = require("../knexfile");
@@ -28,6 +28,14 @@ app.get("/posts", async (req, res) => {
   res.send(data)
 });
 
+//データベースの"posts"テーブルに新規投稿を追加する
+//非同期通信(async-await)
+app.post("/posts", async (req, res) => {
+  // console.log("req.bodyは", req.body);
+  await knex("posts").insert([req.body]);
+  res.send("added new post!");
+})
+
 //データベースの"comments"テーブルから情報を取得する
 //非同期通信(async-await)
 app.get("/comments/:id", async (req, res) => {
@@ -36,9 +44,17 @@ app.get("/comments/:id", async (req, res) => {
   res.send(data)
 });
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "..", "build", "index.html"));
-});
+//データベースの"comments"テーブルに新規コメントを追加する
+//非同期通信(async-await)
+app.post("/comments", async (req, res) => {
+  // console.log("req.bodyは", req.body);
+  await knex("comments").insert([req.body]);
+  res.send("added new post!");
+})
+
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "..", "build", "index.html"));
+// });
 
 //listenメソッドを実行して指定したポート番号でリクエストを待ち受ける
 app.listen(port, () => {

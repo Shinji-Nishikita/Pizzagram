@@ -4,17 +4,46 @@ import avatar from "./avatar.png";
 import { useState, useEffect } from "react";
 
 export default function Post({ photo }) {
-  const [comments, setComments] = useState([]);
   // console.log("photoデータは:", photo)
+
+  const [comments, setComments] = useState([]);
+  // console.log("commentsは:", comments)
+  const [newComment, setNewComment] = useState();
+
   useEffect(() => {
     async function getComment() {
       const data = await fetch(`/comments/${photo.id}`)
       const parse = await data.json();
-      console.log("parseは:", parse)
       setComments(parse)
     }
-    getComment()
-  }, [photo.id])
+    if (photo.id) {
+      getComment()
+    };
+  }, [photo.id, newComment])
+  //===> photo.idがないとエラー出る
+
+  async function postComment() {
+   // testデータ==>newCommentをpostする
+    // 無ければreturn
+    if (newComment === "") {
+      return;
+    }
+
+    const data = { user: "shinji_n", text: newComment, post_id: photo.id };
+
+    // コメントをpostする
+    await fetch("/comments", {
+      method: "POST",
+      headers: {
+      "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+
+    //どうやって過去のコメント(comments)と最新のコメント(newComment)を一緒にsetCommentsに渡せるか
+    // setComments(newComment);
+    setNewComment()
+  }
 
   return (
     <div className="container">
@@ -33,18 +62,20 @@ export default function Post({ photo }) {
           </div>
         )
       })}
-      {comments.map((item) => {
-        return (
-          <div className="addComment">
+          <div className="addComment" >
             <input
               className="inputText"
               type="text"
-              placeholder={`${item.user}としてコメントを追加する`}
+              placeholder={"Add a comment"}
+              value={newComment}
+              onChange={e => {
+                // console.log("e.target.valueは", [e.target.value])
+                // console.log("eは", e)
+                setNewComment(e.target.value)
+              }}
             />
-            <button className="button">send</button>
+            <button className="button" onClick={postComment}>send</button>
           </div>
-        )
-      })}
     </div>
   );
 };

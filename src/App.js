@@ -11,8 +11,6 @@ function App() {
     async function fetchData() {
       const data = await fetch("/posts");
       const parse = await data.json();
-      console.log(parse)
-      // setPosts(JSON.stringify(parse));
       setPosts(parse);
     }
     fetchData();
@@ -21,11 +19,9 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <div className="headBlock"></div>
       {posts.map((item) => {
         return <Post photo={item} key={item.id} />
       })}
-      <div className="footBlock"></div>
       <Footer />
     </div>
   );
