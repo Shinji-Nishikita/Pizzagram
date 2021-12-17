@@ -4,30 +4,26 @@ import avatar from "./avatar.png";
 import { useState, useEffect } from "react";
 
 export default function Post({ photo }) {
-  // console.log("photoデータは:", photo)
 
   const [comments, setComments] = useState([]);
-  // console.log("commentsは:", comments)
-  const [newComment, setNewComment] = useState();
+  const [newComment, setNewComment] = useState("");
 
   useEffect(() => {
+
     async function getComment() {
       const data = await fetch(`/comments/${photo.id}`)
       const parse = await data.json();
       setComments(parse)
     }
-    if (photo.id) {
-      getComment()
-    };
+
+    if (photo.id) getComment();
+
   }, [photo.id, newComment])
   //===> photo.idがないとエラー出る
 
   async function postComment() {
-   // testデータ==>newCommentをpostする
-    // 無ければreturn
-    if (newComment === "") {
-      return;
-    }
+
+    if (newComment === "") return;
 
     const data = { user: "shinji_n", text: newComment, post_id: photo.id };
 
@@ -42,7 +38,7 @@ export default function Post({ photo }) {
 
     //どうやって過去のコメント(comments)と最新のコメント(newComment)を一緒にsetCommentsに渡せるか
     // setComments(newComment);
-    setNewComment()
+    setNewComment("")
   }
 
   return (
@@ -69,8 +65,6 @@ export default function Post({ photo }) {
               placeholder={"Add a comment"}
               value={newComment}
               onChange={e => {
-                // console.log("e.target.valueは", [e.target.value])
-                // console.log("eは", e)
                 setNewComment(e.target.value)
               }}
             />
