@@ -7,6 +7,7 @@ export default function Post({ photo }) {
 
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+  console.log("newCommentは:", newComment)
 
   useEffect(() => {
 
@@ -36,8 +37,6 @@ export default function Post({ photo }) {
       body: JSON.stringify(data)
     })
 
-    //どうやって過去のコメント(comments)と最新のコメント(newComment)を一緒にsetCommentsに渡せるか
-    // setComments(newComment);
     setNewComment("")
   }
 
