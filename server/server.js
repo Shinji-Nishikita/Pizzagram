@@ -49,7 +49,7 @@ app.get("/comments/:id", async (req, res) => {
 app.post("/comments", async (req, res) => {
   // console.log("req.bodyは", req.body);
   await knex("comments").insert([req.body]);
-  res.send("added new post!");
+  res.send("added new comment!");
 })
 
 // app.get("*", (req, res) => {

@@ -7,7 +7,7 @@ export default function Post({ photo }) {
 
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
-  console.log("newCommentは:", newComment)
+  // console.log("newCommentは:", newComment)
 
   useEffect(() => {
 
