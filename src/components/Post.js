@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import "./post.css";
 import avatar from "./avatar.png";
-import { useState, useEffect } from "react";
 
 export default function Post({ photo }) {
 
   const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState("");
-  console.log("newCommentは:", newComment)
+  const [postFlag, setPostFlag] = useState(false);
+  const inputEl = useRef(null);
+  // console.log("newCommentは:", newComment)
 
   useEffect(() => {
 
     async function getComment() {
+      console.log("rendering!!!");
       const data = await fetch(`/comments/${photo.id}`)
       const parse = await data.json();
       setComments(parse)
@@ -19,14 +20,15 @@ export default function Post({ photo }) {
 
     if (photo.id) getComment();
 
-  }, [photo.id, newComment])
+  }, [photo.id, postFlag])
   //===> photo.idがないとエラー出る
 
   async function postComment() {
 
-    if (newComment === "") return;
+    // console.log("inputEl.current.value is:", inputEl.current.value);//コメントフォームに入力した文字
+    // console.log("photo.id is:", photo.id);//コメントした写真のID
 
-    const data = { user: "shinji_n", text: newComment, post_id: photo.id };
+    const data = { user: "shinji_n", text: inputEl.current.value, post_id: photo.id };
 
     // コメントをpostする
     await fetch("/comments", {
@@ -37,7 +39,9 @@ export default function Post({ photo }) {
       body: JSON.stringify(data)
     })
 
-    setNewComment("")
+    if(postFlag === false) setPostFlag(true)
+    if(postFlag === true) setPostFlag(false)
+    // console.log("rendering!!!");
   }
 
   return (
@@ -62,10 +66,7 @@ export default function Post({ photo }) {
               className="inputText"
               type="text"
               placeholder={"Add a comment"}
-              value={newComment}
-              onChange={e => {
-                setNewComment(e.target.value)
-              }}
+              ref={inputEl}
             />
             <button className="button" onClick={postComment}>send</button>
           </div>
