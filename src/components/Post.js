@@ -12,7 +12,7 @@ export default function Post({ photo }) {
   useEffect(() => {
 
     async function getComment() {
-      console.log("rendering!!!");
+      // console.log("rendering!!!");
       const data = await fetch(`/comments/${photo.id}`)
       const parse = await data.json();
       setComments(parse)
@@ -24,10 +24,8 @@ export default function Post({ photo }) {
   //===> photo.idがないとエラー出る
 
   async function postComment() {
-
     // console.log("inputEl.current.value is:", inputEl.current.value);//コメントフォームに入力した文字
     // console.log("photo.id is:", photo.id);//コメントした写真のID
-
     const data = { user: "shinji_n", text: inputEl.current.value, post_id: photo.id };
 
     // コメントをpostする
@@ -39,8 +37,12 @@ export default function Post({ photo }) {
       body: JSON.stringify(data)
     })
 
+    // useEffect内のgetComment関数発動トリガー
     if(postFlag === false) setPostFlag(true)
     if(postFlag === true) setPostFlag(false)
+
+    // コメント投稿後、入力フォームをクリアにする
+    inputEl.current.value = ""
     // console.log("rendering!!!");
   }
 
