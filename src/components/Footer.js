@@ -1,4 +1,5 @@
 import React from 'react';
+import S3 from 'react-aws-s3';
 import "./footer.css";
 import camera from "./camera.png";
 
