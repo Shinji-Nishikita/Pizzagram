@@ -28,3 +28,7 @@
   height: 40px;
   z-index: -1;
 }
+
+#input_img {
+  display: none;
+}
