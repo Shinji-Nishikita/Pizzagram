@@ -5,7 +5,7 @@ import avatar from "./avatar.png";
 export default function Post({ photo }) {
 
   const [comments, setComments] = useState([]);
-  const [postFlag, setPostFlag] = useState(false);
+  const [commentFlag, setCommentFlag] = useState(false);
   const inputEl = useRef(null);
   // console.log("newCommentは:", newComment)
 
@@ -20,7 +20,7 @@ export default function Post({ photo }) {
 
     if (photo.id) getComment();
 
-  }, [photo.id, postFlag])
+  }, [photo.id, commentFlag])
   //===> photo.idがないとエラー出る
 
   async function postComment() {
@@ -38,8 +38,7 @@ export default function Post({ photo }) {
     })
 
     // useEffect内のgetComment関数発動トリガー
-    if(postFlag === false) setPostFlag(true)
-    if(postFlag === true) setPostFlag(false)
+    setCommentFlag(!commentFlag)
 
     // コメント投稿後、入力フォームをクリアにする
     inputEl.current.value = ""

@@ -3,7 +3,7 @@ import "./footer.css";
 import camera from "./camera.png";
 require("dotenv").config();
 
-export default function Footer() {
+export default function Footer({postFlag, setPostFlag}) {
 
   const postButton = useRef(null);
 
@@ -30,9 +30,9 @@ export default function Footer() {
     );
     const parsedImageDataUrl = await imageDataUrl.json();
     const photoUrl = parsedImageDataUrl.mediaLink;
-    const data = { user: "shinji_n", photo_url: photoUrl };
 
     // postsテーブルへpost
+    const data = { user: "shinji_n", photo_url: photoUrl };
     await fetch("/posts", {
       method: "POST",
       headers: {
@@ -41,6 +41,12 @@ export default function Footer() {
       },
       body: JSON.stringify(data),
     });
+
+    // App.js内のuseEffect内のfetchData関数発動トリガー
+    setPostFlag(!postFlag)
+
+    // 新規投稿後、inputフォームをクリアにする
+    postButton.current.value = ""
   }
 
   return (

@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 
 function App() {
   const [posts, setPosts] = useState([]);
+  const [postFlag, setPostFlag] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -14,7 +15,7 @@ function App() {
       setPosts(parse);
     }
     fetchData();
-  }, []);
+  }, [postFlag]);
 
   return (
     <div className="App">
@@ -22,7 +23,7 @@ function App() {
       {posts.map((item) => {
         return <Post photo={item} key={item.id} />
       })}
-      <Footer />
+      <Footer postFlag={postFlag} setPostFlag={setPostFlag}/>
     </div>
   );
 }
