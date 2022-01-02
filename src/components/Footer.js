@@ -1,32 +1,46 @@
 import React, { useRef } from 'react';
-import S3 from 'react-aws-s3';
 import "./footer.css";
 import camera from "./camera.png";
 require("dotenv").config();
 
 export default function Footer() {
 
-  const postButton = useRef();
-  const config = {
-    bucketName: "pizzagram-s3",
-    region: "ap-northeast-1",
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    }
-  const ReactS3Client = new S3(config);
+  const postButton = useRef(null);
 
   // upload関数
   async function upload(e) {
-    // console.log("eは:", e)
-    // console.log("postButton is", postButton)
+    // console.log("eは:", e);
     if (!e.target.files.length) return;
     const fileOfPics = e.target.files[0]
     // console.log("fileOfPicsは:", fileOfPics)
+    // console.log("fileOfPics.nameは:", fileOfPics.name)
 
-    await ReactS3Client
-    .uploadFile(fileOfPics)
-    .then(data => console.log(data))
-    .catch(err => console.error(err))
+    // GCSへimageデータをアップロード
+    await fetch(
+      `https://storage.googleapis.com/upload/storage/v1/b/pizzagram-app/o?uploadType=media&name=${fileOfPics.name}`,
+      {
+        method: "POST",
+        body: fileOfPics,
+      }
+    );
+
+    // postgreSQLへpostするimageデータURL情報
+    const imageDataUrl = await fetch(
+      `https://storage.googleapis.com/storage/v1/b/pizzagram-app/o/${fileOfPics.name}?fields=mediaLink`
+    );
+    const parsedImageDataUrl = await imageDataUrl.json();
+    const photoUrl = parsedImageDataUrl.mediaLink;
+    const data = { user: "shinji_n", photo_url: photoUrl };
+
+    // postsテーブルへpost
+    await fetch("/posts", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
   }
 
   return (
@@ -34,7 +48,7 @@ export default function Footer() {
       <div className="footerBack"></div>
       <div className="cameraIcon">
         <img className="cameraImg" src={camera} alt="cam" onClick={() => {
-          postButton.current.click();
+          postButton.current.click()
         }}/>
         <input id="input_img" type="file" ref={postButton} onChange={upload}></input>
       </div>
