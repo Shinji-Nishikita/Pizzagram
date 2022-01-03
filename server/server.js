@@ -52,9 +52,9 @@ app.post("/comments", async (req, res) => {
   res.send("added new comment!");
 })
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "..", "build", "index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "..", "build", "index.html"));
+});
 
 //listenメソッドを実行して指定したポート番号でリクエストを待ち受ける
 app.listen(port, () => {
