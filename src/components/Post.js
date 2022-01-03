@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import "./post.css";
 import avatar from "./avatar.png";
+import LikeButton from "./Likebutton";
 
 export default function Post({ photo }) {
 
@@ -53,6 +54,9 @@ export default function Post({ photo }) {
       </div>
       <div>
         <img className="photo" src={photo.photo_url} alt={photo.id}/>
+      </div>
+      <div>
+      <LikeButton />
       </div>
       {comments.map((item) => {
         return (
