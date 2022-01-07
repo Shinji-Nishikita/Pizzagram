@@ -1,29 +1,48 @@
-## Learn More
+# Pizzagram
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img width=150 src=https://user-images.githubusercontent.com/71207367/147902375-31589c64-50d8-4ea6-9cf7-14a2d3cf94fc.png />
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This is a mock application like an Instagram.
 
-### Code Splitting
+## Tech Stack
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Language:
 
-### Analyzing the Bundle Size
+- JavaScript
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Front-end:
 
-### Making a Progressive Web App
+- React (Function components, React Hooks)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Back-end:
 
-### Advanced Configuration
+- Node.js
+- Express (REST API)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Database:
 
-### Deployment
+- PostgreSQL
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Query Builder:
 
-### `yarn build` fails to minify
+- knex.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Storage:
+
+- Google Cloud Storage
+
+Library:
+
+- Material-UI
+
+## User Interfaces
+
+### ・User can push a like button
+
+<img width=300 src="https://user-images.githubusercontent.com/71207367/147905017-44ad2cc6-4238-4d83-9d78-0959e6c2cdbc.png" />  　
+
+### ・User can post a comment
+
+<img width=300 src="https://user-images.githubusercontent.com/71207367/147904939-cecbc44d-43ac-4b51-a01e-c4b09d3d9418.png" />
+
+### ・User also can post a photos
