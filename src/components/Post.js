@@ -8,12 +8,10 @@ export default function Post({ photo }) {
   const [comments, setComments] = useState([]);
   const [commentFlag, setCommentFlag] = useState(false);
   const inputEl = useRef(null);
-  // console.log("newCommentは:", newComment)
 
   useEffect(() => {
 
     async function getComment() {
-      // console.log("rendering!!!");
       const data = await fetch(`/comments/${photo.id}`)
       const parse = await data.json();
       setComments(parse)

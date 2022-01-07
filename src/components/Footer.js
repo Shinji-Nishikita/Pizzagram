@@ -9,11 +9,8 @@ export default function Footer({postFlag, setPostFlag}) {
 
   // upload関数
   async function upload(e) {
-    // console.log("eは:", e);
     if (!e.target.files.length) return;
     const fileOfPics = e.target.files[0]
-    // console.log("fileOfPicsは:", fileOfPics)
-    // console.log("fileOfPics.nameは:", fileOfPics.name)
 
     // GCSへimageデータをアップロード
     await fetch(
