@@ -41,8 +41,6 @@ Library:
 
 <img width=300 src="https://user-images.githubusercontent.com/71207367/147905017-44ad2cc6-4238-4d83-9d78-0959e6c2cdbc.png" />  　
 
-### ・User can post a comment
+### ・User can upload any photo and post a comment
 
 <img width=300 src="https://user-images.githubusercontent.com/71207367/147904939-cecbc44d-43ac-4b51-a01e-c4b09d3d9418.png" />
-
-### ・User also can post a photos
