@@ -13,8 +13,8 @@ const port = process.env.PORT || 4000;
 
 //knexfileを読み込む
 const config = require("../knexfile");
-const knex = require("knex")(config[process.env.DB_ENV]);
-// const knex = require("knex")("pg");
+// const knex = require("knex")(config[process.env.DB_ENV]);
+const knex = require("knex")("pg");
 
 //クライアント側から送信されたリクエストをreq.bodyで取得するためにJSONをパースするミドルウェアを使用する。
 app.use(express.json());
