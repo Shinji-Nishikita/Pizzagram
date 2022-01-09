@@ -18,11 +18,11 @@ module.exports = {
   },
   production: {
     client: "pg",
-    connection: process.env.DB_HR_PG_URL || {
-      host : process.env.DB_HR_PG_HOST,
-      user : process.env.DB_HR_PG_USER,
-      password: process.env.DB_HR_PG_PW,
-      database: process.env.DB_HR_PG_NAME,
+    connection: process.env.DATABASE_URL || {
+      host : process.env.DATABASE_HOST,
+      user : process.env.DATABASE_USER,
+      password: process.env.DATABASE_PW,
+      database: process.env.DATABASE_NAME,
     },
     migrations: {
       directory: __dirname + '/db/migrations',
