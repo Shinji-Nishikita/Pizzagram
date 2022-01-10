@@ -1,6 +1,9 @@
 // .envファイルを読み込む
 require("dotenv").config();
 
+//knex.js内の定数knexを読み込む
+const knex = require("../db/knex");
+
 // pathモジュール(ネイティブユーティリティモジュール)をインポート=>ファイルパスを操作するためのもの。
 const path = require('path');
 
@@ -10,11 +13,6 @@ const express = require("express");
 //expressサーバーを作成する
 const app = express();
 const port = process.env.PORT || 4000;
-
-//knexfileを読み込む
-const config = require("../knexfile");
-// const knex = require("knex")(config[process.env.DB_ENV]);
-const knex = require("knex")("pg");
 
 //クライアント側から送信されたリクエストをreq.bodyで取得するためにJSONをパースするミドルウェアを使用する。
 app.use(express.json());
