@@ -14,6 +14,14 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 4000;
 
+(async () => {
+  await knex.migrate.rollback();
+  await knex.migrate.latest();
+  console.log("database migrated");
+  await knex.seed.run();
+  console.log("database seeded");
+})();
+
 //クライアント側から送信されたリクエストをreq.bodyで取得するためにJSONをパースするミドルウェアを使用する。
 app.use(express.json());
 
