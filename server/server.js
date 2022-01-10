@@ -2,7 +2,7 @@
 require("dotenv").config();
 
 //knex.js内の定数knexを読み込む
-const knex = require("../db/knex");
+const db = require("../db/knex");
 
 // pathモジュール(ネイティブユーティリティモジュール)をインポート=>ファイルパスを操作するためのもの。
 const path = require('path');
@@ -14,14 +14,6 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 4000;
 
-(async () => {
-  await knex.migrate.rollback();
-  await knex.migrate.latest();
-  console.log("database migrated");
-  await knex.seed.run();
-  console.log("database seeded");
-})();
-
 //クライアント側から送信されたリクエストをreq.bodyで取得するためにJSONをパースするミドルウェアを使用する。
 app.use(express.json());
 
@@ -31,7 +23,7 @@ app.use(express.static(path.resolve(__dirname, "..", "build")));
 //データベースの"posts"テーブルから情報を取得する
 //非同期通信(async-await)
 app.get("/posts", async (req, res) => {
-  const data = await knex.select().from("posts");
+  const data = await db.select().from("posts");
   res.send(data)
 });
 
@@ -39,7 +31,7 @@ app.get("/posts", async (req, res) => {
 //非同期通信(async-await)
 app.post("/posts", async (req, res) => {
   // console.log("req.bodyは", req.body);
-  await knex("posts").insert([req.body]);
+  await db("posts").insert([req.body]);
   res.send("added new post!");
 })
 
@@ -47,7 +39,7 @@ app.post("/posts", async (req, res) => {
 //非同期通信(async-await)
 app.get("/comments/:id", async (req, res) => {
   const userId = Number(req.params.id);
-  const data = await knex.select().from("comments").where("post_id", userId);
+  const data = await db.select().from("comments").where("post_id", userId);
   res.send(data)
 });
 
@@ -55,7 +47,7 @@ app.get("/comments/:id", async (req, res) => {
 //非同期通信(async-await)
 app.post("/comments", async (req, res) => {
   // console.log("req.bodyは", req.body);
-  await knex("comments").insert([req.body]);
+  await db("comments").insert([req.body]);
   res.send("added new comment!");
 })
 
